@@ -1,14 +1,32 @@
 package net.kzn.shoppingbackend.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Category {
 /*
  private fields;
  * */
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
+
 private String name;
+
+@Column(name="DESCRIPTION ")
 private String descrption;
+
+@Column(name="image_url")
 private String imageURL;
+
+@Column(name="is_active")
 private boolean active=true;
+
+
 public int getId() {
 	return id;
 }
@@ -38,6 +56,11 @@ public boolean isActive() {
 }
 public void setActive(boolean active) {
 	this.active = active;
+}
+@Override
+public String toString() {
+	return "Category [id=" + id + ", name=" + name + ", descrption=" + descrption + ", imageURL=" + imageURL
+			+ ", active=" + active + "]";
 }
 
 	

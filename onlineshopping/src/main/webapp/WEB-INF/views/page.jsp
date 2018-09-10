@@ -22,12 +22,17 @@
 <title>online shopping-${title}</title>
 <script>
 	window.menu = '${title}';
+	
+	window.contextRoot='${contextRoot}'
 </script>
 
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Readable Theme -->
 <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+
+<!-- Bootstrap Data TAble  -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -68,6 +73,11 @@
 			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
 				<%@include file="listProduct.jsp"%>
 			</c:if>
+			<!-- load only when user clicked show product -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
+			
 		</div>
 		<!-- /footer comes here -->
 		<%@include file="./shared/footer.jsp"%>
@@ -79,8 +89,16 @@
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+		
+		<!-- data table plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- data Bootstrp script -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
+		
 		<!-- Self Coded JavaScript -->
 		<script src="${js}/myapp.js"></script>
+		
 	</div>
 </body>
 
