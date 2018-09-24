@@ -22,6 +22,13 @@ public class JasonDataController {
 	public List<Product> getAllProducts(){
 		return productDao.listActiveProduct();
 	}
+	
+	@RequestMapping("admin/all/products")
+	@ResponseBody
+	public List<Product> getAllProductsForAdmin(){
+		return productDao.list();
+	}
+	
 	@RequestMapping("/category/{id}/products")
 	@ResponseBody
 	public List<Product> getProductByCategory(@PathVariable int id){
