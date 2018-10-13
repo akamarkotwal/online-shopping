@@ -27,7 +27,7 @@ public class HibernetConfig {
 	private final static String DATABASE_PASSWORD="";
 	
 	//dataSource bean will be avialable 
-	@Bean
+	@Bean("dataSource")
 	public  DataSource getDataSource() {
 		
 		//Poviding the database connection information

@@ -129,11 +129,10 @@
 		 </div>
 		
 		<div class='col-xs-12'>
-		 <div style="overflow:auto">
-		 
-		 <!-- Product table for admin -->
-		 <table id="adminProductsTable" class="table table-striped table-bordered">
-							
+		<div class="container-fluid">
+			  <div class ="table-responsive">
+		    <table id="adminProductsTable" class="table table-striped table-bordered">
+				
 				<thead>					
 					<tr>					
 						<th>Id</th>
@@ -167,10 +166,18 @@
 		 
 		 
 		 
-		 </div>
+		 
+		     </div>
+			
+			</div>	
+		 <!-- Product table for admin -->
+		
+		 
+		 
+	
 		</div> 
 		
-</div><<!-- Modal -->
+</div><!-- Modal -->
 	<div class="modal fade" id="myCategoryModal" tabindex="-1" role="dialog" >
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">

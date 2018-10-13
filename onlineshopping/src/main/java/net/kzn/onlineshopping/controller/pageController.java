@@ -1,12 +1,19 @@
 
 package net.kzn.onlineshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.kzn.onlineshopping.exception.ProductNotFoundException;
@@ -57,6 +64,32 @@ public ModelAndView contact(){
 	return mv;
 	
 }
+
+//login
+@RequestMapping(value= "/login")
+public ModelAndView login(@RequestParam(name="error",required=false)String error,
+		@RequestParam(name="logout",required=false)String logout){
+	 
+	
+	
+	ModelAndView mv=new ModelAndView("login");
+	if(error!=null) {
+		mv.addObject("message","Invalid User"); 
+
+		
+	}
+	if(logout!=null) {
+		mv.addObject("logout"," User has logout succesfully !"); 
+
+		
+	}
+		
+	mv.addObject("title","Login"); 
+
+	return mv;
+	
+}
+
 /*
  * method to load all the product and category
  * 
@@ -110,5 +143,34 @@ public ModelAndView showSingleProduct(@PathVariable int id )throws ProductNotFou
 	
 	
 }
+@RequestMapping(value= "/access-denied")
+public ModelAndView accessDenied(){
+	
+	ModelAndView mv=new ModelAndView("error");
+	mv.addObject("title","403-Access-Denied");
+	mv.addObject("errorTitle","Ah Caught you");
+	mv.addObject("errorDescription","you are not authorized  to view this page");
+	
+	
+	return mv;
+	
+}
+
+@RequestMapping(value="/performe-logout")
+public String logout(HttpServletRequest request, HttpServletResponse response) {
+	
+	//we are going to fetch the Authentication
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	 if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	
+	
+	 return "redirect:/login?logout";
+	
+	
+}
+
+
 
 }

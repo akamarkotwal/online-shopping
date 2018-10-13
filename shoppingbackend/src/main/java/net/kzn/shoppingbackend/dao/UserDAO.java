@@ -19,11 +19,10 @@ public interface UserDAO {
 	//add the address
 	
 	boolean addAddress(Address address);
-	Address getBillingAddress(User user);
+	Address getBillingAddress(int userId);
 	
-	List<Address>listShippingAddress(User user);
+	List<Address>listShippingAddress(int userId);
 	
-	//add the cart
-	boolean updateCart(Cart cart);
+	
 
 }

@@ -22,8 +22,7 @@ public class Address implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	/* -----------*/
-	@ManyToOne
-	private User user;
+	
 	
 	@NotBlank(message = "Please enter address line one!")
 	@Column(name = "address_line_one")
@@ -96,12 +95,14 @@ public class Address implements Serializable{
 	public void setBilling(boolean billing) {
 		this.billing = billing;
 	}
+	@Column(name = "user_id")
+	private int userId;
 	
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	@Override

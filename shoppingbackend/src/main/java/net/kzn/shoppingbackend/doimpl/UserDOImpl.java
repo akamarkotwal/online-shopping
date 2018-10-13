@@ -48,53 +48,48 @@ public class UserDOImpl implements UserDAO {
 		}
 	}
 
-	public boolean updateCart(Cart cart) {
-		try {			
-			// will look for this code later and why we need to change it
-			sessionFactory.getCurrentSession().update(cart);			
-			return true;
-		}
-		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
-	}
+	
 
 	@Override
 	public User getByEmail(String email) {
-		String selectQuery="FROM User WHERE email=:email";
+		String selectQuery = "FROM User WHERE email = :email";
 		try {
-			return sessionFactory.getCurrentSession().createQuery(selectQuery,User.class).setParameter("email", email).getSingleResult();
-			
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,User.class)
+						.setParameter("email",email)
+							.getSingleResult();
+		}
+		catch(Exception ex) {
 			return null;
 		}
+							
 	}
 
 	@Override
-	public Address getBillingAddress(User user) {
-		String selectQuery="FROM Address WHERE user=:user AND billing=:billing";
-		try {
-			return sessionFactory.getCurrentSession().createQuery(selectQuery,Address.class).setParameter("user",user).setParameter("billing", true).getSingleResult();
-			
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}
+	public List<Address> listShippingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE shipping = :shipping AND shipping = :isShipping  ORDER BY id DESC";
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isShipping", true)
+							.getResultList();
+		
 	}
 
 	@Override
-	public List<Address> listShippingAddress(User user) {
-		String selectQuery="FROM Address WHERE user=:user AND shipping=:shipping";
-		try {
-			return sessionFactory.getCurrentSession().createQuery(selectQuery,Address.class).setParameter("user",user).setParameter("shipping", true).getResultList();
-			
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE user= :user AND billing = :isBilling";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isBilling", true)
+						.getSingleResult();
+		}
+		catch(Exception ex) {
 			return null;
 		}
 	}

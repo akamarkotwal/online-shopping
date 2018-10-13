@@ -47,7 +47,9 @@
 			
 				<div class="col-xs-12">
 				
+					<div class="container-fluid">
 					
+					<div class ="table-responsive">
 					<table id="productListTable" class="table table-striped table-borderd">
 					
 					
@@ -75,6 +77,11 @@
 							</tr>
 							</tfoot>
 		           </table>
+					
+					</div>
+					</div>
+					
+					
 				
 				</div>
 			
